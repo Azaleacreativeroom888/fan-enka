@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>紅椿 -演歌ファンサイト-</title>
+<meta name="description" content="演歌の情念と美意識を綴るファンサイト「紅椿」。日記、ギャラリー、プレイリスト、サイト紹介をお届けします。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;800&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --enji: #6d1f2c;
+    --enji-dark: #3d0f16;
+    --enji-deep: #4e131c;
+    --gold: #ba9257;
+    --gold-light: #e2c896;
+    --ivory: #f5ebda;
+    --ivory-soft: #ede0c9;
+    --ink: #2a1815;
+    --camellia: #c1443f;
+    --camellia-soft: #dd7367;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  html { scroll-behavior:smooth; }
+
+  body{
+    background:var(--ivory);
+    color:var(--ink);
+    font-family:"Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", sans-serif;
+    font-weight:400;
+    line-height:1.9;
+    overflow-x:hidden;
+  }
+
+  h1,h2,h3, .mincho{
+    font-family:"Shippori Mincho", serif;
+  }
+
+  a{ color:inherit; text-decoration:none; }
+
+  img, svg { display:block; }
+
+  /* ===== 背景の椿模様（薄く全体に） ===== */
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:0;
+    background-image:
+      radial-gradient(circle at 8% 20%, rgba(109,31,44,0.05) 0, transparent 40%),
+      radial-gradient(circle at 92% 70%, rgba(109,31,44,0.05) 0, transparent 40%);
+  }
+
+  /* ===== 緞帳ヘッダー ===== */
+  .curtain{
+    position:relative;
+    background:
+      linear-gradient(180deg, var(--enji-dark) 0%, var(--enji) 55%, var(--enji-deep) 100%);
+    padding-top: 3px;
+    overflow:hidden;
+  }
+
+  .curtain::before{
+    /* ひだ（襞）表現 */
+    content:"";
+    position:absolute;
+    inset:0;
+    background-image: repeating-linear-gradient(
+      90deg,
+      rgba(0,0,0,0.16) 0px,
+      rgba(0,0,0,0.16) 2px,
+      rgba(255,255,255,0.035) 2px,
+      rgba(255,255,255,0.035) 34px,
+      rgba(0,0,0,0.05) 34px,
+      rgba(0,0,0,0.05) 68px
+    );
+    mix-blend-mode:multiply;
+    opacity:0.9;
+  }
+
+  .fringe{
+    height:14px;
+    width:100%;
+    background:
+      repeating-linear-gradient(
+        90deg,
+        var(--gold) 0px, var(--gold) 10px,
+        var(--gold-light) 10px, var(--gold-light) 12px
+      );
+    box-shadow: 0 2px 8px rgba(0,0,0,0.35);
+    position:relative;
+    z-index:2;
+  }
+  .fringe::after{
+    content:"";
+    display:block;
+    height:10px;
+    width:100%;
+    background-image: repeating-linear-gradient(
+      90deg,
+      var(--gold) 0, var(--gold) 8px,
+      transparent 8px, transparent 20px
+    );
+    background-size: 20px 10px;
+    clip-path: polygon(0 0,100% 0,100% 0,
+      95% 100%, 90% 0, 85% 100%, 80% 0, 75% 100%, 70% 0, 65% 100%,
+      60% 0, 55% 100%, 50% 0, 45% 100%, 40% 0, 35% 100%, 30% 0,
+      25% 100%, 20% 0, 15% 100%, 10% 0, 5% 100%, 0 0);
+    opacity:0.85;
+  }
+
+  nav{
+    position:relative;
+    z-index:3;
+    display:flex;
+    justify-content:center;
+    gap: clamp(6px, 2vw, 28px);
+    flex-wrap:wrap;
+    padding: 16px 18px 10px;
+  }
+  nav a{
+    font-family:"Shippori Mincho", serif;
+    font-size:0.88rem;
+    letter-spacing:0.12em;
+    color: var(--gold-light);
+    padding:6px 4px;
+    border-bottom:1px solid transparent;
+    transition: color .25s ease, border-color .25s ease;
+  }
+  nav a:hover, nav a.current{
+    color:#fff;
+    border-bottom-color: var(--gold-light);
+  }
+  nav .sep{
+    color: rgba(226,200,150,0.35);
+    user-select:none;
+  }
+
+  .hero{
+    position:relative;
+    z-index:2;
+    text-align:center;
+    padding: 48px 20px 90px;
+    color: var(--ivory);
+  }
+
+  .hero .eyebrow{
+    display:inline-block;
+    font-size:0.72rem;
+    letter-spacing:0.4em;
+    color: var(--gold-light);
+    margin-bottom:18px;
+    opacity:0.9;
+  }
+
+  .hero h1{
+    font-size: clamp(2.6rem, 8vw, 4.6rem);
+    font-weight:800;
+    letter-spacing:0.14em;
+    color:#fdf6ea;
+    text-shadow: 0 2px 18px rgba(0,0,0,0.45);
+    position:relative;
+    display:inline-block;
+  }
+
+  .hero .furigana{
+    display:block;
+    font-size:0.85rem;
+    letter-spacing:0.5em;
+    color: var(--gold-light);
+    margin-bottom:10px;
+  }
+
+  .hero .catch{
+    margin-top:22px;
+    font-size: clamp(0.95rem, 2.4vw, 1.15rem);
+    letter-spacing:0.14em;
+    color: var(--ivory-soft);
+  }
+
+  .hero .catch span{
+    display:inline-block;
+    padding: 0 0.6em;
+    position:relative;
+  }
+  .hero .catch span:not(:last-child)::after{
+    content:"・";
+    position:absolute;
+    right:-0.15em;
+    color: var(--gold);
+  }
+
+  /* 椿モチーフ（大） */
+  .camellia-mark{
+    width:64px;
+    height:64px;
+    margin: 30px auto 0;
+    color: var(--gold-light);
+    opacity:0.9;
+  }
+
+  /* 舞台の裾 */
+  .stage-hem{
+    position:absolute;
+    left:0; right:0; bottom:-1px;
+    height: 46px;
+    background: var(--ivory);
+    clip-path: polygon(
+      0 100%, 0 40%,
+      4% 60%, 8% 30%, 12% 60%, 16% 25%, 20% 60%,
+      24% 35%, 28% 60%, 32% 30%, 36% 60%, 40% 40%,
+      44% 60%, 48% 25%, 52% 60%, 56% 35%, 60% 60%,
+      64% 30%, 68% 60%, 72% 40%, 76% 60%, 80% 25%,
+      84% 60%, 88% 35%, 92% 60%, 96% 30%, 100% 60%,
+      100% 100%
+    );
+  }
+
+  /* ===== 舞い落ちる花びら ===== */
+  .petals{
+    position:absolute;
+    inset:0;
+    overflow:hidden;
+    pointer-events:none;
+    z-index:1;
+  }
+  .petal{
+    position:absolute;
+    top:-40px;
+    width:14px;
+    height:14px;
+    background: radial-gradient(circle at 35% 30%, var(--camellia-soft), var(--camellia) 70%);
+    border-radius: 60% 40% 55% 45% / 55% 45% 60% 40%;
+    opacity:0.55;
+    animation: fall linear infinite;
+  }
+  @keyframes fall{
+    0%   { transform: translateY(0) translateX(0) rotate(0deg); opacity:0; }
+    8%   { opacity:0.6; }
+    100% { transform: translateY(420px) translateX(40px) rotate(220deg); opacity:0; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .petal{ animation:none; display:none; }
+  }
+
+  /* ===== メインコンテンツ ===== */
+  main{
+    position:relative;
+    z-index:1;
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 70px 24px 40px;
+  }
+
+  section{ margin-bottom: 86px; }
+
+  .section-head{
+    text-align:center;
+    margin-bottom: 40px;
+  }
+  .section-head .label{
+    font-size:0.72rem;
+    letter-spacing:0.35em;
+    color: var(--camellia);
+    display:block;
+    margin-bottom:10px;
+  }
+  .section-head h2{
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    letter-spacing:0.1em;
+    color: var(--enji);
+  }
+  .section-head .rule{
+    width:36px;
+    height:2px;
+    background: var(--gold);
+    margin: 16px auto 0;
+  }
+
+  .intro-text{
+    max-width: 620px;
+    margin: 0 auto;
+    text-align:center;
+    font-size:1rem;
+    color:#4a332f;
+  }
+  .intro-text p + p{ margin-top:1.4em; }
+  .intro-text .accent{
+    color: var(--enji);
+    font-weight:500;
+  }
+
+  /* 見どころカード */
+  .cards{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+  }
+  @media (max-width: 620px){
+    .cards{ grid-template-columns: 1fr; }
+  }
+
+  .card{
+    position:relative;
+    background: linear-gradient(160deg, #ffffff, var(--ivory-soft));
+    border: 1px solid rgba(109,31,44,0.14);
+    border-radius: 4px;
+    padding: 30px 26px 26px;
+    transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+    overflow:hidden;
+  }
+  .card::before{
+    content:"";
+    position:absolute;
+    top:0; left:0;
+    width: 5px;
+    height:100%;
+    background: linear-gradient(180deg, var(--camellia), var(--enji));
+  }
+  .card:hover{
+    transform: translateY(-4px);
+    box-shadow: 0 14px 30px rgba(77,20,28,0.16);
+    border-color: rgba(186,146,87,0.5);
+  }
+  .card .no{
+    font-family:"Shippori Mincho", serif;
+    font-size:0.72rem;
+    letter-spacing:0.2em;
+    color: var(--gold);
+    display:block;
+    margin-bottom:10px;
+  }
+  .card h3{
+    font-size:1.28rem;
+    color: var(--enji);
+    margin-bottom:10px;
+    letter-spacing:0.06em;
+  }
+  .card p{
+    font-size:0.9rem;
+    color:#5b4640;
+    margin-bottom:16px;
+  }
+  .card .go{
+    font-size:0.82rem;
+    letter-spacing:0.1em;
+    color: var(--camellia);
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+  }
+  .card .go::after{
+    content:"→";
+    transition: transform .25s ease;
+  }
+  .card:hover .go::after{ transform: translateX(5px); }
+
+  /* 一言メモ（引用風） */
+  .memo{
+    position:relative;
+    background: var(--enji);
+    color: var(--ivory);
+    border-radius: 4px;
+    padding: 46px 30px;
+    text-align:center;
+    overflow:hidden;
+  }
+  .memo::before,
+  .memo::after{
+    content:"";
+    position:absolute;
+    width:120px; height:120px;
+    border:1px solid rgba(226,200,150,0.25);
+    border-radius:50%;
+  }
+  .memo::before{ top:-50px; left:-50px; }
+  .memo::after{ bottom:-60px; right:-40px; }
+
+  .memo .kotoba{
+    font-family:"Shippori Mincho", serif;
+    font-size: clamp(1.15rem, 3vw, 1.5rem);
+    letter-spacing:0.1em;
+    line-height:2;
+    position:relative;
+    z-index:1;
+  }
+  .memo .kotoba::before,
+  .memo .kotoba::after{
+    color: var(--gold-light);
+    font-size:1.1em;
+  }
+  .memo .attribution{
+    margin-top:20px;
+    font-size:0.78rem;
+    letter-spacing:0.2em;
+    color: var(--gold-light);
+    position:relative;
+    z-index:1;
+  }
+
+  footer{
+    position:relative;
+    z-index:1;
+    text-align:center;
+    padding: 44px 20px 50px;
+    border-top: 1px solid rgba(109,31,44,0.15);
+    margin-top: 20px;
+  }
+  footer .foot-mark{
+    width:26px; height:26px;
+    margin:0 auto 14px;
+    color: var(--camellia);
+    opacity:0.8;
+  }
+  footer nav{
+    padding:0 0 16px;
+  }
+  footer nav a{
+    color: var(--enji);
+    font-size:0.8rem;
+  }
+  footer nav a:hover{ color: var(--camellia); border-color: var(--camellia); }
+  footer .copy{
+    font-size:0.74rem;
+    color:#8a746e;
+    letter-spacing:0.06em;
+  }
+
+</style>
+</head>
+<body>
+
+<header class="curtain">
+  <div class="fringe"></div>
+
+  <nav aria-label="メインナビゲーション">
+    <a href="index.html" class="current">TOP</a>
+    <span class="sep">|</span>
+    <a href="blog.html">BLOG</a>
+    <span class="sep">|</span>
+    <a href="gallery.html">GALLERY</a>
+    <span class="sep">|</span>
+    <a href="playlist.html">PLAYLIST</a>
+    <span class="sep">|</span>
+    <a href="about.html">ABOUT</a>
+  </nav>
+
+  <div class="hero">
+    <div class="petals" aria-hidden="true"></div>
+    <span class="eyebrow">ENKA FAN SITE</span>
+    <span class="furigana">べにつばき</span>
+    <h1 class="mincho">紅椿</h1>
+    <p class="catch">
+      <span>酒</span><span>涙</span><span>雨</span><span>夜汽車</span>
+    </p>
+
+    <svg class="camellia-mark" viewBox="0 0 100 100" aria-hidden="true">
+      <g fill="currentColor">
+        <ellipse cx="50" cy="26" rx="16" ry="22"/>
+        <ellipse cx="74" cy="50" rx="16" ry="22" transform="rotate(90 74 50)"/>
+        <ellipse cx="50" cy="74" rx="16" ry="22"/>
+        <ellipse cx="26" cy="50" rx="16" ry="22" transform="rotate(90 26 50)"/>
+        <ellipse cx="65" cy="35" rx="14" ry="19" transform="rotate(45 65 35)"/>
+        <ellipse cx="35" cy="65" rx="14" ry="19" transform="rotate(45 35 65)"/>
+      </g>
+      <circle cx="50" cy="50" r="10" fill="var(--enji-dark)"/>
+    </svg>
+
+    <div class="stage-hem" aria-hidden="true"></div>
+  </div>
+</header>
+
+<main>
+
+  <section id="welcome">
+    <div class="section-head">
+      <span class="label">WELCOME</span>
+      <h2 class="mincho">ようこそ、紅椿へ</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="intro-text">
+      <p>
+        雨の降る夜、コップ酒を片手にラジオから流れる一曲。<br>
+        ここは、そんな<span class="accent">演歌</span>の世界にただ静かに浸るための小さな部屋です。
+      </p>
+      <p>
+        こぶし、唸り、間の取り方——歌い手ひとりひとりの技と情念に耳を澄ませながら、
+        日々感じたことを日記に、心に残った一曲をプレイリストに、
+        そして舞台の記憶をギャラリーに残していきます。
+      </p>
+    </div>
+  </section>
+
+  <section id="highlights">
+    <div class="section-head">
+      <span class="label">CONTENTS</span>
+      <h2 class="mincho">見どころ</h2>
+      <div class="rule"></div>
+    </div>
+
+    <div class="cards">
+      <a class="card" href="blog.html">
+        <span class="no mincho">其の一</span>
+        <h3 class="mincho">日記</h3>
+        <p>聴いた歌、行った公演、ふと浮かんだ言葉。日付と共に綴る、演歌をめぐる日々の記録。</p>
+        <span class="go">読みに行く</span>
+      </a>
+
+      <a class="card" href="gallery.html">
+        <span class="no mincho">其の二</span>
+        <h3 class="mincho">ギャラリー</h3>
+        <p>舞台衣装、レコードジャケット、公演の一場面——目で味わう演歌の華やかさ。</p>
+        <span class="go">見に行く</span>
+      </a>
+
+      <a class="card" href="playlist.html">
+        <span class="no mincho">其の三</span>
+        <h3 class="mincho">プレイリスト</h3>
+        <p>雨の日に、酒の席に、旅の途中に。気分ごとに選んだ、とっておきの並び。</p>
+        <span class="go">聴きに行く</span>
+      </a>
+
+      <a class="card" href="about.html">
+        <span class="no mincho">其の四</span>
+        <h3 class="mincho">このサイトについて</h3>
+        <p>紅椿を始めた理由と、演歌との出会い。運営者のちいさな自己紹介です。</p>
+        <span class="go">知りに行く</span>
+      </a>
+    </div>
+  </section>
+
+  <section id="memo">
+    <div class="memo">
+      <p class="kotoba mincho">
+        椿は、花びらではなく<br>
+        花ごと落ちる。<br>
+        演歌もまた、そういう歌だと思う。
+      </p>
+      <p class="attribution">紅椿・管理人ノートより</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <svg class="foot-mark" viewBox="0 0 100 100" aria-hidden="true">
+    <g fill="currentColor">
+      <ellipse cx="50" cy="26" rx="16" ry="22"/>
+      <ellipse cx="74" cy="50" rx="16" ry="22" transform="rotate(90 74 50)"/>
+      <ellipse cx="50" cy="74" rx="16" ry="22"/>
+      <ellipse cx="26" cy="50" rx="16" ry="22" transform="rotate(90 26 50)"/>
+    </g>
+  </svg>
+  <nav aria-label="フッターナビゲーション">
+    <a href="index.html">TOP</a>
+    <span class="sep">|</span>
+    <a href="blog.html">BLOG</a>
+    <span class="sep">|</span>
+    <a href="gallery.html">GALLERY</a>
+    <span class="sep">|</span>
+    <a href="playlist.html">PLAYLIST</a>
+    <span class="sep">|</span>
+    <a href="about.html">ABOUT</a>
+  </nav>
+  <p class="copy">© 紅椿 - Beni Tsubaki Enka Fan Site</p>
+</footer>
+
+<script>
+  // 花びらをランダムに生成して緞帳の中に舞わせる
+  (function(){
+    var container = document.querySelector('.petals');
+    if(!container) return;
+    var count = window.innerWidth < 600 ? 8 : 14;
+    for(var i=0; i<count; i++){
+      var p = document.createElement('div');
+      p.className = 'petal';
+      var left = Math.random()*100;
+      var duration = 6 + Math.random()*6;
+      var delay = Math.random()*8;
+      var scale = 0.6 + Math.random()*0.9;
+      p.style.left = left + '%';
+      p.style.animationDuration = duration + 's';
+      p.style.animationDelay = delay + 's';
+      p.style.transform = 'scale(' + scale + ')';
+      container.appendChild(p);
+    }
+  })();
+</script>
+
+</body>
+</html>
