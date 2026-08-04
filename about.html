@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>このサイトについて | 紅椿 -演歌ファンサイト-</title>
+<meta name="description" content="演歌ファンサイト「紅椿」について、そして管理人の自己紹介。お問い合わせはこちらから。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;800&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --enji: #6d1f2c;
+    --enji-dark: #3d0f16;
+    --enji-deep: #4e131c;
+    --gold: #ba9257;
+    --gold-light: #e2c896;
+    --ivory: #f5ebda;
+    --ivory-soft: #ede0c9;
+    --ink: #2a1815;
+    --camellia: #c1443f;
+    --camellia-soft: #dd7367;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background:var(--ivory);
+    color:var(--ink);
+    font-family:"Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", sans-serif;
+    line-height:1.9;
+  }
+  h1,h2,h3,.mincho{ font-family:"Shippori Mincho", serif; }
+  a{ color:inherit; text-decoration:none; }
+
+  /* ===== 共通ヘッダー ===== */
+  .curtain{
+    position:relative;
+    background: linear-gradient(180deg, var(--enji-dark) 0%, var(--enji) 55%, var(--enji-deep) 100%);
+  }
+  .curtain::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image: repeating-linear-gradient(
+      90deg,
+      rgba(0,0,0,0.16) 0px, rgba(0,0,0,0.16) 2px,
+      rgba(255,255,255,0.035) 2px, rgba(255,255,255,0.035) 34px,
+      rgba(0,0,0,0.05) 34px, rgba(0,0,0,0.05) 68px
+    );
+    mix-blend-mode:multiply;
+    opacity:0.9;
+  }
+  .fringe{
+    height:12px; width:100%;
+    background: repeating-linear-gradient(90deg, var(--gold) 0px, var(--gold) 10px, var(--gold-light) 10px, var(--gold-light) 12px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.35);
+    position:relative; z-index:2;
+  }
+  nav{
+    position:relative; z-index:3;
+    display:flex; justify-content:center; gap:clamp(6px,2vw,28px);
+    flex-wrap:wrap;
+    padding: 16px 18px;
+  }
+  nav a{
+    font-family:"Shippori Mincho", serif;
+    font-size:0.88rem;
+    letter-spacing:0.12em;
+    color: var(--gold-light);
+    padding:6px 4px;
+    border-bottom:1px solid transparent;
+    transition: color .25s ease, border-color .25s ease;
+  }
+  nav a:hover, nav a.current{
+    color:#fff;
+    border-bottom-color: var(--gold-light);
+  }
+  nav .sep{ color: rgba(226,200,150,0.35); }
+
+  .page-hero{
+    position:relative; z-index:2;
+    text-align:center;
+    padding: 20px 20px 56px;
+    color: var(--ivory);
+  }
+  .page-hero .eyebrow{
+    display:block;
+    font-size:0.7rem;
+    letter-spacing:0.4em;
+    color: var(--gold-light);
+    margin-bottom:14px;
+    opacity:0.9;
+  }
+  .page-hero h1{
+    font-size: clamp(1.8rem, 6vw, 2.6rem);
+    font-weight:800;
+    letter-spacing:0.14em;
+    color:#fdf6ea;
+    text-shadow: 0 2px 14px rgba(0,0,0,0.4);
+  }
+  .page-hero .sub{
+    margin-top:14px;
+    font-size:0.85rem;
+    letter-spacing:0.08em;
+    color: var(--ivory-soft);
+  }
+
+  .stage-hem{
+    position:absolute; left:0; right:0; bottom:-1px; height:36px;
+    background: var(--ivory);
+    clip-path: polygon(
+      0 100%, 0 40%, 4% 60%, 8% 30%, 12% 60%, 16% 25%, 20% 60%,
+      24% 35%, 28% 60%, 32% 30%, 36% 60%, 40% 40%, 44% 60%, 48% 25%,
+      52% 60%, 56% 35%, 60% 60%, 64% 30%, 68% 60%, 72% 40%, 76% 60%,
+      80% 25%, 84% 60%, 88% 35%, 92% 60%, 96% 30%, 100% 60%, 100% 100%
+    );
+  }
+
+  /* ===== 本文 ===== */
+  main{
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 64px 24px 40px;
+  }
+
+  section{ margin-bottom: 74px; }
+
+  .section-label{
+    font-family:"Shippori Mincho", serif;
+    font-size:0.72rem;
+    letter-spacing:0.35em;
+    color: var(--camellia);
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom: 22px;
+  }
+  .section-label::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background: linear-gradient(90deg, rgba(109,31,44,0.3), transparent);
+  }
+
+  .intro-text{
+    font-size:0.97rem;
+    color:#4a332f;
+  }
+  .intro-text p + p{ margin-top:1.3em; }
+  .intro-text .accent{ color: var(--enji); font-weight:500; }
+
+  /* 管理人プロフィール */
+  .profile{
+    display:flex;
+    gap: 26px;
+    align-items:flex-start;
+    background: linear-gradient(160deg, #fffdf8, var(--ivory-soft));
+    border:1px solid rgba(109,31,44,0.14);
+    padding: 28px;
+  }
+  .profile .avatar{
+    flex-shrink:0;
+    width:76px; height:76px;
+    border-radius:50%;
+    background: var(--enji);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .profile .avatar svg{ width:40px; height:40px; color: var(--gold-light); }
+
+  .profile .body h3{
+    font-size:1.1rem;
+    color: var(--enji);
+    margin-bottom:10px;
+    letter-spacing:0.06em;
+  }
+  .profile .body p{
+    font-size:0.9rem;
+    color:#5b4640;
+  }
+  .profile .body p + p{ margin-top:0.9em; }
+
+  .profile-list{
+    list-style:none;
+    margin-top:18px;
+    font-size:0.84rem;
+    color:#6b5650;
+  }
+  .profile-list li{
+    display:flex;
+    gap:10px;
+    padding: 7px 0;
+    border-top: 1px dashed rgba(109,31,44,0.18);
+  }
+  .profile-list li:first-child{ border-top:none; }
+  .profile-list .k{
+    flex-shrink:0;
+    width:88px;
+    color: var(--camellia);
+    font-family:"Shippori Mincho", serif;
+    letter-spacing:0.05em;
+  }
+
+  /* リンクカード */
+  .link-grid{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+  @media (max-width: 560px){
+    .link-grid{ grid-template-columns: 1fr; }
+  }
+
+  .link-card{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    background: linear-gradient(160deg, #fffdf8, var(--ivory-soft));
+    border:1px solid rgba(109,31,44,0.16);
+    padding: 16px 18px;
+    position:relative;
+    overflow:hidden;
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+  .link-card::before{
+    content:"";
+    position:absolute; left:0; top:0; bottom:0;
+    width:3px;
+    background: linear-gradient(180deg, var(--camellia), var(--enji));
+  }
+  .link-card:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 12px 26px rgba(77,20,28,0.14);
+    border-color: rgba(186,146,87,0.55);
+  }
+  .link-icon{
+    flex-shrink:0;
+    width:40px; height:40px;
+    border-radius:3px;
+    background: rgba(109,31,44,0.07);
+    border:1px solid rgba(109,31,44,0.18);
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.15rem;
+  }
+  .link-text{ flex:1; min-width:0; }
+  .link-name{
+    display:block;
+    font-size:0.94rem;
+    color: var(--enji);
+    font-weight:500;
+    margin-bottom:2px;
+  }
+  .link-desc{
+    display:block;
+    font-size:0.76rem;
+    color:#8a746e;
+  }
+  .link-arrow{
+    flex-shrink:0;
+    font-size:1.1rem;
+    color: rgba(109,31,44,0.3);
+    transition: color .25s ease, transform .25s ease;
+  }
+  .link-card:hover .link-arrow{
+    color: var(--camellia);
+    transform: translateX(4px);
+  }
+
+  /* お問い合わせフォーム */
+  .form-card{
+    background: linear-gradient(160deg, #fffdf8, var(--ivory-soft));
+    border:1px solid rgba(109,31,44,0.16);
+    padding: 30px 28px;
+    position:relative;
+  }
+  .form-card::before{
+    content:"";
+    position:absolute; left:0; top:0; bottom:0;
+    width:3px;
+    background: linear-gradient(180deg, var(--camellia), var(--enji));
+  }
+  .form-intro{
+    font-size:0.88rem;
+    color:#6b5650;
+    margin-bottom:22px;
+  }
+  .form-group{ margin-bottom:18px; }
+  .form-label{
+    display:block;
+    font-family:"Shippori Mincho", serif;
+    font-size:0.8rem;
+    letter-spacing:0.1em;
+    color: var(--enji);
+    margin-bottom:7px;
+  }
+  .required{ color: var(--camellia); font-style:normal; }
+
+  .form-input, .form-textarea{
+    width:100%;
+    background:#fff;
+    border:1px solid rgba(109,31,44,0.22);
+    border-radius:3px;
+    color: var(--ink);
+    font-family:"Zen Kaku Gothic New", sans-serif;
+    font-size:0.92rem;
+    padding: 10px 14px;
+    outline:none;
+    transition: border-color .25s ease, box-shadow .25s ease;
+  }
+  .form-input::placeholder, .form-textarea::placeholder{ color:#b6a89f; }
+  .form-input:focus, .form-textarea:focus{
+    border-color: var(--camellia);
+    box-shadow: 0 0 0 3px rgba(193,68,63,0.1);
+  }
+  .form-textarea{ resize:vertical; min-height:130px; }
+
+  .field-error{
+    display:block;
+    font-size:0.72rem;
+    color: var(--camellia);
+    margin-top:5px;
+  }
+
+  .form-submit{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background: var(--enji);
+    border:1px solid var(--enji);
+    border-radius:3px;
+    color:#fdf6ea;
+    font-family:"Shippori Mincho", serif;
+    font-size:0.9rem;
+    letter-spacing:0.15em;
+    padding: 11px 30px;
+    cursor:pointer;
+    transition: background .25s ease, box-shadow .25s ease;
+  }
+  .form-submit:hover{
+    background: var(--enji-dark);
+    box-shadow: 0 8px 18px rgba(77,20,28,0.3);
+  }
+  .form-submit:disabled{ opacity:0.55; cursor:not-allowed; }
+
+  .form-success{
+    background: rgba(109,31,44,0.06);
+    border:1px solid rgba(109,31,44,0.3);
+    border-radius:3px;
+    padding: 16px 20px;
+    text-align:center;
+    color: var(--enji);
+    font-size:0.9rem;
+    margin-bottom:20px;
+  }
+  .form-success-icon{
+    display:block;
+    font-size:1.2rem;
+    margin-bottom:8px;
+    color: var(--camellia);
+  }
+  .form-error-global{
+    background: rgba(193,68,63,0.08);
+    border:1px solid rgba(193,68,63,0.3);
+    border-radius:3px;
+    padding: 12px 16px;
+    color: var(--camellia);
+    font-size:0.85rem;
+    margin-bottom:16px;
+  }
+
+  footer{
+    text-align:center;
+    padding: 44px 20px 50px;
+    border-top: 1px solid rgba(109,31,44,0.15);
+  }
+  footer .foot-mark{
+    width:24px; height:24px; margin:0 auto 14px;
+    color: var(--camellia);
+    opacity:0.8;
+  }
+  footer nav{ padding:0 0 20px; }
+  footer nav a{ color: var(--enji); font-size:0.8rem; }
+  footer nav a:hover{ color: var(--camellia); border-color: var(--camellia); }
+  footer .notice{
+    max-width:620px;
+    margin: 0 auto 14px;
+    font-size:0.7rem;
+    color:#9c8a83;
+    line-height:1.9;
+  }
+  footer .copy{
+    font-size:0.74rem;
+    color:#8a746e;
+    letter-spacing:0.06em;
+  }
+</style>
+</head>
+<body>
+
+<header class="curtain">
+  <div class="fringe"></div>
+  <nav aria-label="メインナビゲーション">
+    <a href="index.html">TOP</a>
+    <span class="sep">|</span>
+    <a href="blog.html">BLOG</a>
+    <span class="sep">|</span>
+    <a href="gallery.html">GALLERY</a>
+    <span class="sep">|</span>
+    <a href="playlist.html">PLAYLIST</a>
+    <span class="sep">|</span>
+    <a href="about.html" class="current">ABOUT</a>
+  </nav>
+  <div class="page-hero">
+    <span class="eyebrow">ABOUT</span>
+    <h1 class="mincho">このサイトについて</h1>
+    <p class="sub">紅椿のこと、そして管理人のこと</p>
+  </div>
+  <div class="stage-hem" aria-hidden="true"></div>
+</header>
+
+<main>
+
+  <section id="about-site">
+    <p class="section-label">SITE CONCEPT</p>
+    <div class="intro-text">
+      <p>
+        「紅椿」は、<span class="accent">演歌</span>という音楽を静かに味わうためのファンサイトです。
+        歌謡曲とはまた違う、こぶしや唸り、間の取り方に宿る情念——そうしたものを、
+        自分のペースで聴き、記録していく場所として始めました。
+      </p>
+      <p>
+        椿は花びらではなく花ごと落ちる花。派手さよりも潔さ、装飾よりも情念を大切にする演歌のイメージと重なるところがあり、
+        サイトの名前にしました。日記・ギャラリー・プレイリストを通して、少しずつ更新していきます。
+      </p>
+    </div>
+  </section>
+
+  <section id="about-me">
+    <p class="section-label">PROFILE</p>
+    <div class="profile">
+      <div class="avatar">
+        <svg viewBox="0 0 100 100" aria-hidden="true">
+          <g fill="currentColor">
+            <ellipse cx="50" cy="26" rx="16" ry="22"/>
+            <ellipse cx="74" cy="50" rx="16" ry="22" transform="rotate(90 74 50)"/>
+            <ellipse cx="50" cy="74" rx="16" ry="22"/>
+            <ellipse cx="26" cy="50" rx="16" ry="22" transform="rotate(90 26 50)"/>
+          </g>
+        </svg>
+      </div>
+      <div class="body">
+        <h3 class="mincho">管理人について</h3>
+        <p>
+          演歌を聴き始めたきっかけは、実家のラジオから偶然流れてきた一曲でした。
+          それ以来、レコードやCDを少しずつ集めながら、歌い手ごとの節回しの違いを聴き比べるのが楽しみになっています。
+        </p>
+        <p>
+          普段は別のジャンルの創作活動もしていますが、演歌についてはあくまで一人の聴き手として、
+          肩の力を抜いて綴っていくつもりです。
+        </p>
+
+        <ul class="profile-list">
+          <li><span class="k mincho">好きな時間</span><span>雨の日にレコードを聴くこと</span></li>
+          <li><span class="k mincho">聴き方</span><span>レコード・有線・ラジオが中心</span></li>
+          <li><span class="k mincho">更新頻度</span><span>気の向くまま、不定期</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="links">
+    <p class="section-label">LINKS</p>
+    <div class="link-grid">
+
+      <a class="link-card" href="https://azaleacreativeroom888.github.io/" target="_blank" rel="noopener">
+        <div class="link-icon">🏮</div>
+        <div class="link-text">
+          <span class="link-name">Azalea Creative Room</span>
+          <span class="link-desc">創作活動のホーム</span>
+        </div>
+        <span class="link-arrow">›</span>
+      </a>
+
+      <a class="link-card" href="https://bsky.app/profile/azaleaazalea88.bsky.social" target="_blank" rel="noopener">
+        <div class="link-icon">🦋</div>
+        <div class="link-text">
+          <span class="link-name">Bluesky</span>
+          <span class="link-desc">更新のお知らせなど</span>
+        </div>
+        <span class="link-arrow">›</span>
+      </a>
+
+    </div>
+  </section>
+
+  <section id="contact">
+    <p class="section-label">CONTACT</p>
+
+    <div class="form-card">
+      <p class="form-intro">感想・お問い合わせなどはこちらからどうぞ。内容を確認の上、返信いたします。</p>
+
+      <div data-fs-success class="form-success" style="display:none;">
+        <span class="form-success-icon">✦</span>
+        <p>メッセージを送信しました。ありがとうございます。</p>
+      </div>
+
+      <div data-fs-error class="form-error-global" style="display:none;"></div>
+
+      <form id="contact-form" action="https://formspree.io/f/maqvpvoz" method="POST">
+
+        <div class="form-group">
+          <label class="form-label" for="name">お名前</label>
+          <input class="form-input" type="text" id="name" name="name" placeholder="紅椿の読者さま">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="email">メールアドレス <span class="required">*</span></label>
+          <input class="form-input" type="email" id="email" name="email" data-fs-field placeholder="example@email.com" required>
+          <span data-fs-error="email" class="field-error"></span>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="message">メッセージ <span class="required">*</span></label>
+          <textarea class="form-textarea" id="message" name="message" data-fs-field placeholder="メッセージを入力してください…" rows="6" required></textarea>
+          <span data-fs-error="message" class="field-error"></span>
+        </div>
+
+        <button class="form-submit" type="submit" data-fs-submit-btn>送信する</button>
+
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <svg class="foot-mark" viewBox="0 0 100 100" aria-hidden="true">
+    <g fill="currentColor">
+      <ellipse cx="50" cy="26" rx="16" ry="22"/>
+      <ellipse cx="74" cy="50" rx="16" ry="22" transform="rotate(90 74 50)"/>
+      <ellipse cx="50" cy="74" rx="16" ry="22"/>
+      <ellipse cx="26" cy="50" rx="16" ry="22" transform="rotate(90 26 50)"/>
+    </g>
+  </svg>
+  <nav aria-label="フッターナビゲーション">
+    <a href="index.html">TOP</a>
+    <span class="sep">|</span>
+    <a href="blog.html">BLOG</a>
+    <span class="sep">|</span>
+    <a href="gallery.html">GALLERY</a>
+    <span class="sep">|</span>
+    <a href="playlist.html">PLAYLIST</a>
+    <span class="sep">|</span>
+    <a href="about.html">ABOUT</a>
+  </nav>
+  <p class="notice">
+    当サイトに掲載されている画像・文章について、AI学習への利用、無断転載・二次利用を禁止します。<br>
+    Please refrain from using any images or text on this website for AI training, unauthorized reproduction, or secondary use.
+  </p>
+  <p class="copy">© 紅椿 - Beni Tsubaki Enka Fan Site</p>
+</footer>
+
+<script>
+  window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+  formspree('initForm', { formElement: '#contact-form', formId: 'maqvpvoz' });
+</script>
+<script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+
+</body>
+</html>
