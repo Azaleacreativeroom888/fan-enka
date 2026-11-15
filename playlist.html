@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>プレイリスト | 紅椿 -演歌ファンサイト-</title>
+<meta name="description" content="演歌ファンサイト「紅椿」のプレイリスト。心に残った一曲を、題名・歌手・感想とともに並べます。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;800&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --enji: #6d1f2c;
+    --enji-dark: #3d0f16;
+    --enji-deep: #4e131c;
+    --gold: #ba9257;
+    --gold-light: #e2c896;
+    --ivory: #f5ebda;
+    --ivory-soft: #ede0c9;
+    --ink: #2a1815;
+    --camellia: #c1443f;
+    --camellia-soft: #dd7367;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background:var(--ivory);
+    color:var(--ink);
+    font-family:"Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", sans-serif;
+    line-height:1.9;
+  }
+  h1,h2,h3,.mincho{ font-family:"Shippori Mincho", serif; }
+  a{ color:inherit; text-decoration:none; }
+
+  /* ===== 共通ヘッダー ===== */
+  .curtain{
+    position:relative;
+    background: linear-gradient(180deg, var(--enji-dark) 0%, var(--enji) 55%, var(--enji-deep) 100%);
+  }
+  .curtain::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image: repeating-linear-gradient(
+      90deg,
+      rgba(0,0,0,0.16) 0px, rgba(0,0,0,0.16) 2px,
+      rgba(255,255,255,0.035) 2px, rgba(255,255,255,0.035) 34px,
+      rgba(0,0,0,0.05) 34px, rgba(0,0,0,0.05) 68px
+    );
+    mix-blend-mode:multiply;
+    opacity:0.9;
+  }
+  .fringe{
+    height:12px; width:100%;
+    background: repeating-linear-gradient(90deg, var(--gold) 0px, var(--gold) 10px, var(--gold-light) 10px, var(--gold-light) 12px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.35);
+    position:relative; z-index:2;
+  }
+  nav{
+    position:relative; z-index:3;
+    display:flex; justify-content:center; gap:clamp(6px,2vw,28px);
+    flex-wrap:wrap;
+    padding: 16px 18px;
+  }
+  nav a{
+    font-family:"Shippori Mincho", serif;
+    font-size:0.88rem;
+    letter-spacing:0.12em;
+    color: var(--gold-light);
+    padding:6px 4px;
+    border-bottom:1px solid transparent;
+    transition: color .25s ease, border-color .25s ease;
+  }
+  nav a:hover, nav a.current{
+    color:#fff;
+    border-bottom-color: var(--gold-light);
+  }
+  nav .sep{ color: rgba(226,200,150,0.35); }
+
+  .page-hero{
+    position:relative; z-index:2;
+    text-align:center;
+    padding: 20px 20px 56px;
+    color: var(--ivory);
+  }
+  .page-hero .eyebrow{
+    display:block;
+    font-size:0.7rem;
+    letter-spacing:0.4em;
+    color: var(--gold-light);
+    margin-bottom:14px;
+    opacity:0.9;
+  }
+  .page-hero h1{
+    font-size: clamp(1.9rem, 6vw, 2.8rem);
+    font-weight:800;
+    letter-spacing:0.16em;
+    color:#fdf6ea;
+    text-shadow: 0 2px 14px rgba(0,0,0,0.4);
+  }
+  .page-hero .sub{
+    margin-top:14px;
+    font-size:0.85rem;
+    letter-spacing:0.08em;
+    color: var(--ivory-soft);
+  }
+
+  .stage-hem{
+    position:absolute; left:0; right:0; bottom:-1px; height:36px;
+    background: var(--ivory);
+    clip-path: polygon(
+      0 100%, 0 40%, 4% 60%, 8% 30%, 12% 60%, 16% 25%, 20% 60%,
+      24% 35%, 28% 60%, 32% 30%, 36% 60%, 40% 40%, 44% 60%, 48% 25%,
+      52% 60%, 56% 35%, 60% 60%, 64% 30%, 68% 60%, 72% 40%, 76% 60%,
+      80% 25%, 84% 60%, 88% 35%, 92% 60%, 96% 30%, 100% 60%, 100% 100%
+    );
+  }
+
+  /* ===== プレイリスト ===== */
+  main{
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 64px 24px 40px;
+  }
+
+  .tracks{
+    list-style:none;
+    counter-reset: track;
+  }
+
+  .track{
+    counter-increment: track;
+    position:relative;
+    display:flex;
+    gap: 22px;
+    padding: 26px 22px 26px 18px;
+    margin-bottom: 16px;
+    background: linear-gradient(160deg, #fffdf8, var(--ivory-soft));
+    border:1px solid rgba(109,31,44,0.14);
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+    overflow:hidden;
+  }
+  .track::before{
+    content:"";
+    position:absolute; left:0; top:0; bottom:0;
+    width:4px;
+    background: linear-gradient(180deg, var(--camellia), var(--enji));
+  }
+  .track:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 12px 26px rgba(77,20,28,0.13);
+    border-color: rgba(186,146,87,0.5);
+  }
+
+  .track .num{
+    flex-shrink:0;
+    width:44px;
+    font-family:"Shippori Mincho", serif;
+    font-size:1.7rem;
+    font-weight:800;
+    color: var(--gold);
+    line-height:1.2;
+    text-align:center;
+  }
+  .track .num::before{
+    content: counter(track, decimal-leading-zero);
+  }
+
+  .track .info{ flex:1; min-width:0; }
+
+  .track .title{
+    font-size:1.2rem;
+    font-weight:600;
+    color: var(--enji);
+    letter-spacing:0.05em;
+    line-height:1.5;
+  }
+  .track .singer{
+    margin-top:2px;
+    font-size:0.82rem;
+    letter-spacing:0.1em;
+    color: var(--camellia);
+  }
+  .track .singer::before{
+    content:"歌 ";
+    color: var(--gold);
+    font-family:"Shippori Mincho", serif;
+  }
+
+  .track .comment{
+    margin-top:14px;
+    padding-top:14px;
+    border-top:1px dashed rgba(109,31,44,0.2);
+    font-size:0.92rem;
+    color:#4a332f;
+  }
+
+  @media (max-width: 520px){
+    .track{ gap:14px; padding: 22px 16px 22px 14px; }
+    .track .num{ width:34px; font-size:1.3rem; }
+  }
+
+  .end-mark{
+    text-align:center;
+    margin-top: 40px;
+    color: var(--gold);
+    font-size:0.8rem;
+    letter-spacing:0.3em;
+  }
+
+  footer{
+    text-align:center;
+    padding: 44px 20px 50px;
+    border-top: 1px solid rgba(109,31,44,0.15);
+    margin-top: 20px;
+  }
+  footer .foot-mark{
+    width:24px; height:24px; margin:0 auto 14px;
+    color: var(--camellia);
+    opacity:0.8;
+  }
+  footer nav{ padding:0 0 16px; }
+  footer nav a{ color: var(--enji); font-size:0.8rem; }
+  footer nav a:hover{ color: var(--camellia); border-color: var(--camellia); }
+  footer .copy{
+    font-size:0.74rem;
+    color:#8a746e;
+    letter-spacing:0.06em;
+  }
+</style>
+</head>
+<body>
+
+<header class="curtain">
+  <div class="fringe"></div>
+  <nav aria-label="メインナビゲーション">
+    <a href="index.html">TOP</a>
+    <span class="sep">|</span>
+    <a href="blog.html">BLOG</a>
+    <span class="sep">|</span>
+    <a href="gallery.html">GALLERY</a>
+    <span class="sep">|</span>
+    <a href="playlist.html" class="current">PLAYLIST</a>
+    <span class="sep">|</span>
+    <a href="about.html">ABOUT</a>
+  </nav>
+  <div class="page-hero">
+    <span class="eyebrow">PLAYLIST</span>
+    <h1 class="mincho">プレイリスト</h1>
+    <p class="sub">心に残った一曲を、感想とともに</p>
+  </div>
+  <div class="stage-hem" aria-hidden="true"></div>
+</header>
+
+<main>
+
+  <!-- ※ 以下はサンプルです。題名・歌手・感想を書き換えて使ってください。 -->
+  <ol class="tracks">
+
+    <li class="track">
+      <div class="num" aria-hidden="true"></div>
+      <div class="info">
+        <h2 class="title mincho">津軽海峡・冬景色</h2>
+        <p class="singer">石川さゆり</p>
+        <p class="comment">冬の寒さが画面越しに伝わってくるような一曲。歌い出しの低い声から、サビで一気に感情が広がる流れが何度聴いても鳥肌もの。</p>
+      </div>
+    </li>
+
+    <li class="track">
+      <div class="num" aria-hidden="true"></div>
+      <div class="info">
+        <h2 class="title mincho">舟唄</h2>
+        <p class="singer">八代亜紀</p>
+        <p class="comment">お酒の席にぴったりの、渋くて深い声。ゆったりしたテンポなので、夜にひとりで聴くとしみじみする。</p>
+      </div>
+    </li>
+
+    <li class="track">
+      <div class="num" aria-hidden="true"></div>
+      <div class="info">
+        <h2 class="title mincho">雪國</h2>
+        <p class="singer">吉幾三</p>
+        <p class="comment">静かな始まりなのに、聴き終わるころにはすっかり曲の世界に入り込んでいる。雪の日に聴きたい一曲。</p>
+      </div>
+    </li>
+
+    <li class="track">
+      <div class="num" aria-hidden="true"></div>
+      <div class="info">
+        <h2 class="title mincho">ふたり酒</h2>
+        <p class="singer">川中美幸</p>
+        <p class="comment">やさしい歌声と、あたたかいメロディ。演歌をあまり聴かない人にもおすすめしたくなる入り口のような曲。</p>
+      </div>
+    </li>
+
+  </ol>
+
+  <p class="end-mark">— 続く —</p>
+</main>
+
+<footer>
+  <svg class="foot-mark" viewBox="0 0 100 100" aria-hidden="true">
+    <g fill="currentColor">
+      <ellipse cx="50" cy="26" rx="16" ry="22"/>
+      <ellipse cx="74" cy="50" rx="16" ry="22" transform="rotate(90 74 50)"/>
+      <ellipse cx="50" cy="74" rx="16" ry="22"/>
+      <ellipse cx="26" cy="50" rx="16" ry="22" transform="rotate(90 26 50)"/>
+    </g>
+  </svg>
+  <nav aria-label="フッターナビゲーション">
+    <a href="index.html">TOP</a>
+    <span class="sep">|</span>
+    <a href="blog.html">BLOG</a>
+    <span class="sep">|</span>
+    <a href="gallery.html">GALLERY</a>
+    <span class="sep">|</span>
+    <a href="playlist.html">PLAYLIST</a>
+    <span class="sep">|</span>
+    <a href="about.html">ABOUT</a>
+  </nav>
+  <p class="copy">© 紅椿 - Beni Tsubaki Enka Fan Site</p>
+</footer>
+
+</body>
+</html>
